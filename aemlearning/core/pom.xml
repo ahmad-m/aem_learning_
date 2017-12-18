@@ -122,8 +122,11 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Bundle-SymbolicName>com.learning.aem-learning</Bundle-SymbolicName>
-
+                    <Export-Package>aemlearning.*;net.oauth.*;version=20100527</Export-Package>
+                        <Import-Package>*</Import-Package>
+                        <Bundle-SymbolicName>aemlearning</Bundle-SymbolicName>
+						<Embed-Dependency>oauth-provider;scope=runtime|compile</Embed-Dependency>
+						<Embed-Transitive>true</Embed-Transitive>
                     </instructions>
                 </configuration>
             </plugin>
