@@ -61,14 +61,6 @@
                                                             fieldLabel="User Submenu Link"
                                                             name="./link"
                                                             rootPath="/content"/>
-                                                        <flag
-                                                            jcr:primaryType="nt:unstructured"
-                                                            sling:resourceType="granite/ui/components/foundation/form/checkbox"
-                                                            checked="{Boolean}false"
-                                                            fieldDescription="Testing Flag for checkbox"
-                                                            name="./flag"
-                                                            text="Flag"
-                                                            title="Checkbox Tooltip"/>
 						                                     <usernestedsubmenudetails
 						                                        jcr:primaryType="nt:unstructured"
 						                                        sling:resourceType="granite/ui/components/foundation/form/multifield"

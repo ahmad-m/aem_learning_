@@ -42,7 +42,6 @@ public class TouchNestedMultiFieldComponentUse extends WCMUsePojo {
 
 					String title = jObj.getString("title");
 					String path = jObj.getString("link");
-					String flag = jObj.getString("flag");
 					jNestedArr = jObj.getJSONArray("myNestedUserSubmenu");
 					if (jNestedArr != null && jNestedArr.length() > 0) {
 						JSONObject jNestedObj = jNestedArr.getJSONObject(0);
@@ -50,7 +49,6 @@ public class TouchNestedMultiFieldComponentUse extends WCMUsePojo {
 					}
 					menuItem.setTitle(title);
 					menuItem.setLink(path);
-					menuItem.setFlag(flag);
 					submenuItems.add(menuItem);
 				}
 			}

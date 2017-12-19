@@ -10,16 +10,7 @@ public class TouchNestedMultiFieldBean {
 
 	private String title;
 	private String link;
-	private String flag;
 	private String subtitle;
-
-	public String getFlag() {
-		return flag;
-	}
-
-	public void setFlag(String flag) {
-		this.flag = flag;
-	}
 
 	public String getTitle() {
 		return title;
