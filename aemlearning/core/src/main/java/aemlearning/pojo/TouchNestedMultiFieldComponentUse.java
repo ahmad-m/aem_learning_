@@ -3,12 +3,14 @@ package aemlearning.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.sling.commons.json.JSONArray;
-import org.apache.sling.commons.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.adobe.cq.sightly.WCMUsePojo;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import aemlearning.bean.TouchNestedMultiFieldBean;
 
@@ -29,23 +31,22 @@ public class TouchNestedMultiFieldComponentUse extends WCMUsePojo {
 	 */
 	private List<TouchNestedMultiFieldBean> setNestedMultiFieldItems() {
 
-		@SuppressWarnings("deprecation")
-		JSONObject jObj;
-		JSONArray jNestedArr;
+		JsonObject jObj;
+		JsonArray jNestedArr;
+		Gson gson = new Gson();
 		try {
 			String[] itemsProps = getProperties().get("myUserSubmenu", String[].class);
 			if (itemsProps != null) {
 				for (int i = 0; i < itemsProps.length; i++) {
-
-					jObj = new JSONObject(itemsProps[i]);
+					JsonElement json = gson.fromJson(itemsProps[i], JsonElement.class);
+					jObj = json.getAsJsonObject();
 					TouchNestedMultiFieldBean menuItem = new TouchNestedMultiFieldBean();
-
-					String title = jObj.getString("title");
-					String path = jObj.getString("link");
-					jNestedArr = jObj.getJSONArray("myNestedUserSubmenu");
-					if (jNestedArr != null && jNestedArr.length() > 0) {
-						JSONObject jNestedObj = jNestedArr.getJSONObject(0);
-						menuItem.setSubtitle(jNestedObj.getString("subtitle"));
+					String title = jObj.get("title").toString();
+					String path = jObj.get("link").toString();
+					jNestedArr = jObj.getAsJsonArray("myNestedUserSubmenu");
+					if (!jNestedArr.isJsonNull() && jNestedArr.size() > 0) {
+						JsonObject jNestedObj = jNestedArr.get(0).getAsJsonObject();
+						menuItem.setSubtitle(jNestedObj.get("subtitle").toString());
 					}
 					menuItem.setTitle(title);
 					menuItem.setLink(path);
